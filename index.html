@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2b0714">
+<meta name="description" content="A little something for Latifah ❤️">
+<title>A Little Something for Latifah ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. THEME VARIABLES
+   ============================================================ */
+:root{
+  --burgundy:      #3b0a1e;
+  --burgundy-deep: #1c0410;
+  --wine:          #2b0714;
+  --pink:          #ff5c8a;
+  --pink-soft:     #ff9bb6;
+  --blush:         #ffd6e2;
+  --text:          #fff2f6;
+  --radius:        26px;
+  --ease:          cubic-bezier(.2,.8,.3,1);
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  min-height:100dvh;
+  padding:24px 0 calc(84px + env(safe-area-inset-bottom));
+  display:flex;
+  flex-direction:column;
+  font-family:'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-weight:300;
+  color:var(--text);
+  background:
+    radial-gradient(120% 85% at 50% 0%,  #4a0e26 0%, #2b0714 46%, #14030a 100%);
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+
+/* ============================================================
+   2. BACKGROUND DECOR
+   ============================================================ */
+.bg-glow{
+  position:fixed; inset:-20%; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(closest-side, rgba(255,92,138,.20), transparent 70%) 20% 15% / 55% 45% no-repeat,
+    radial-gradient(closest-side, rgba(255,155,182,.15), transparent 70%) 85% 80% / 60% 50% no-repeat;
+  animation:bgDrift 18s ease-in-out infinite alternate;
+}
+@keyframes bgDrift{
+  from{ transform:translate3d(-2%,-1%,0) scale(1); }
+  to  { transform:translate3d(2%,2%,0)   scale(1.08); }
+}
+
+#hearts{
+  position:fixed; inset:0; z-index:1;
+  overflow:hidden; pointer-events:none;
+}
+
+.heart-float{
+  position:fixed;
+  bottom:-50px;
+  font-size:18px;
+  line-height:1;
+  opacity:0;
+  will-change:transform,opacity;
+  animation-name:floatUp;
+  animation-timing-function:linear;
+  animation-fill-mode:forwards;
+}
+@keyframes floatUp{
+  0%  { transform:translate3d(0,0,0) rotate(0deg);                         opacity:0; }
+  12% { opacity:.85; }
+  50% { transform:translate3d(18px,-55vh,0) rotate(16deg);                 opacity:.9; }
+  100%{ transform:translate3d(-22px,-112vh,0) rotate(-12deg);              opacity:0; }
+}
+
+.pop-heart{
+  position:fixed; left:50%; top:50%; z-index:60;
+  font-size:22px; line-height:1; pointer-events:none;
+  will-change:transform,opacity;
+  animation:popOut 1.25s var(--ease) forwards;
+}
+@keyframes popOut{
+  0%  { transform:translate(-50%,-50%) scale(.25); opacity:1; }
+  100%{ transform:translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.35); opacity:0; }
+}
+
+/* ============================================================
+   3. LAYOUT
+   ============================================================ */
+#app{
+  position:relative; z-index:2;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin:auto 0;
+}
+
+.screen{
+  display:none;
+  width:100%;
+  max-width:540px;
+  padding:0 18px;
+}
+.screen.active{
+  display:block;
+  animation:screenIn .55s var(--ease) both;
+}
+@keyframes screenIn{
+  from{ opacity:0; transform:translateY(26px) scale(.975); filter:blur(6px); }
+  to  { opacity:1; transform:none;                          filter:none; }
+}
+
+.card{
+  position:relative;
+  padding:28px 22px 26px;
+  border-radius:var(--radius);
+  background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.028));
+  border:1px solid rgba(255,155,182,.22);
+  box-shadow:
+    0 20px 55px -18px rgba(0,0,0,.65),
+    0 0 0 1px rgba(255,255,255,.03) inset,
+    0 1px 0 rgba(255,255,255,.08) inset;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.card.center{ text-align:center; }
+
+/* ============================================================
+   4. TYPOGRAPHY
+   ============================================================ */
+.eyebrow{
+  display:inline-block;
+  font-size:.66rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--pink-soft);
+  opacity:.85;
+  margin-bottom:14px;
+}
+
+.script-title{
+  font-family:'Great Vibes', cursive;
+  font-weight:400;
+  font-size:clamp(2.1rem, 9vw, 2.9rem);
+  line-height:1.15;
+  margin:14px 0 6px;
+  color:#fff;
+  text-shadow:0 0 18px rgba(255,92,138,.55), 0 0 46px rgba(255,92,138,.28);
+}
+
+.q-title{
+  font-family:'Playfair Display', Georgia, serif;
+  font-weight:600;
+  font-size:clamp(1.35rem, 5.6vw, 1.75rem);
+  line-height:1.28;
+  margin:0 0 10px;
+  color:#fff;
+}
+
+.q-sub{
+  margin:0 0 22px;
+  font-size:.95rem;
+  line-height:1.65;
+  color:var(--blush);
+  opacity:.9;
+}
+
+.typing{
+  min-height:3.6em;
+  margin:10px 0 4px;
+  font-size:1rem;
+  line-height:1.75;
+  color:var(--blush);
+}
+
+.caret{
+  display:inline-block;
+  width:2px; height:1em;
+  margin-left:2px;
+  vertical-align:-2px;
+  background:var(--pink-soft);
+  animation:blink 1s steps(1) infinite;
+}
+.caret.hide{ display:none; }
+@keyframes blink{ 50%{ opacity:0; } }
+
+.hint{
+  margin:14px 0 0;
+  font-size:.76rem;
+  letter-spacing:.08em;
+  color:rgba(255,214,226,.55);
+}
+
+/* ============================================================
+   5. GLOWING HEART
+   ============================================================ */
+.glow-heart{
+  display:inline-block;
+  font-size:3.1rem;
+  line-height:1;
+  filter:drop-shadow(0 0 14px rgba(255,92,138,.95))
+         drop-shadow(0 0 36px rgba(255,92,138,.6));
+  animation:heartbeat 1.7s ease-in-out infinite;
+}
+.glow-heart.small{ font-size:2.2rem; }
+@keyframes heartbeat{
+  0%,100%{ transform:scale(1); }
+  14%    { transform:scale(1.15); }
+  28%    { transform:scale(1); }
+  42%    { transform:scale(1.09); }
+  56%    { transform:scale(1); }
+}
+
+/* ============================================================
+   6. BUTTONS
+   ============================================================ */
+.btn{
+  position:relative;
+  display:block;
+  width:100%;
+  margin-top:16px;
+  padding:15px 24px;
+  border:none;
+  border-radius:999px;
+  font-family:inherit;
+  font-size:1rem;
+  font-weight:500;
+  letter-spacing:.01em;
+  cursor:pointer;
+  overflow:hidden;
+  user-select:none;
+  -webkit-user-select:none;
+  transition:transform .18s ease, box-shadow .28s ease, opacity .28s ease, background .28s ease;
+}
+.btn:active{ transform:scale(.97); }
+.btn:disabled{ opacity:.38; cursor:not-allowed; box-shadow:none; }
+.btn.hidden{ display:none !important; }
+
+.btn.primary{
+  color:#43081a;
+  font-weight:600;
+  background:linear-gradient(135deg, #ffd3e1 0%, #ff83a8 46%, #ff5c8a 100%);
+  box-shadow:
+    0 12px 30px -10px rgba(255,92,138,.9),
+    0 0 0 1px rgba(255,255,255,.28) inset;
+}
+.btn.primary::after{
+  content:'';
+  position:absolute; top:0; left:-120%;
+  width:60%; height:100%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+  transform:skewX(-20deg);
+  animation:shine 3.6s ease-in-out infinite;
+}
+@keyframes shine{
+  0%,55%{ left:-120%; }
+  85%,100%{ left:160%; }
+}
+
+.btn.ghost{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,155,182,.35);
+  color:var(--blush);
+}
+
+.btn.pop-in{ animation:screenIn .45s var(--ease) both; }
+
+.btn-row{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+}
+.btn-row .btn{ margin-top:0; }
+.btn-row .btn.ghost{ flex:0 0 38%; }
+
+/* ============================================================
+   7. OPTION BUTTONS
+   ============================================================ */
+.options{ margin-top:4px; }
+
+.option{
+  display:block;
+  width:100%;
+  margin:0 0 12px;
+  padding:16px 18px;
+  border-radius:18px;
+  border:1px solid rgba(255,155,182,.22);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  font-family:inherit;
+  font-size:.98rem;
+  font-weight:300;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .2s var(--ease), background .25s, border-color .25s, box-shadow .25s, opacity .25s;
+}
+.option:active{ transform:scale(.98); }
+
+.option.selected{
+  background:linear-gradient(135deg, rgba(255,92,138,.36), rgba(255,155,182,.14));
+  border-color:var(--pink-soft);
+  box-shadow:0 0 0 1px rgba(255,155,182,.55), 0 10px 26px -12px rgba(255,92,138,.95);
+  transform:translateY(-1px);
+}
+.option.faded{ opacity:.42; }
+
+.options.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.options.row .option{
+  flex:1 1 28%;
+  margin:0;
+  text-align:center;
+  padding:15px 10px;
+  font-size:.92rem;
+}
+
+.options.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.options.grid .option{
+  margin:0;
+  text-align:center;
+  padding:18px 10px;
+  font-size:.88rem;
+  line-height:1.4;
+  min-height:84px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ============================================================
+   8. CHIPS + INPUTS
+   ============================================================ */
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:18px;
+}
+.chip{
+  padding:11px 17px;
+  border-radius:999px;
+  border:1px solid rgba(255,155,182,.28);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  font-family:inherit;
+  font-size:.88rem;
+  cursor:pointer;
+  transition:transform .18s var(--ease), background .25s, border-color .25s, box-shadow .25s;
+}
+.chip:active{ transform:scale(.95); }
+.chip.selected{
+  background:linear-gradient(135deg, rgba(255,92,138,.42), rgba(255,155,182,.16));
+  border-color:var(--pink-soft);
+  box-shadow:0 0 16px -2px rgba(255,92,138,.8);
+}
+
+textarea, input[type="text"]{
+  width:100%;
+  padding:15px 17px;
+  border-radius:18px;
+  border:1px solid rgba(255,155,182,.25);
+  background:rgba(0,0,0,.22);
+  color:var(--text);
+  font-family:inherit;
+  font-size:.95rem;
+  font-weight:300;
+  line-height:1.6;
+  outline:none;
+  resize:vertical;
+  transition:border-color .25s, box-shadow .25s, background .25s;
+}
+textarea::placeholder, input::placeholder{ color:rgba(255,214,226,.42); }
+textarea:focus, input:focus{
+  border-color:var(--pink-soft);
+  background:rgba(0,0,0,.32);
+  box-shadow:0 0 0 3px rgba(255,92,138,.18);
+}
+
+.counter{
+  margin:8px 4px 0;
+  text-align:right;
+  font-size:.72rem;
+  color:rgba(255,214,226,.5);
+}
+
+/* ============================================================
+   9. REPLY / FEEDBACK BOX
+   ============================================================ */
+.reply{
+  display:none;
+  margin-top:18px;
+  padding:16px 18px;
+  border-radius:18px;
+  border-left:3px solid var(--pink);
+  background:rgba(255,92,138,.11);
+  color:var(--blush);
+  font-size:.95rem;
+  line-height:1.65;
+}
+.reply.show{ display:block; animation:screenIn .45s var(--ease) both; }
+.reply.error{
+  border-left-color:#ffb35c;
+  background:rgba(255,179,92,.12);
+  color:#ffe0b8;
+}
+
+/* ============================================================
+   10. FINAL LETTER
+   ============================================================ */
+.card.letter{ text-align:center; padding:32px 24px 30px; }
+
+.letter-line{
+  margin:0 0 16px;
+  font-family:'Playfair Display', Georgia, serif;
+  font-size:1rem;
+  line-height:1.8;
+  color:var(--blush);
+  opacity:0;
+  animation:lineUp .9s var(--ease) forwards;
+}
+@keyframes lineUp{
+  from{ opacity:0; transform:translateY(16px); filter:blur(4px); }
+  to  { opacity:1; transform:none;                filter:none; }
+}
+
+.letter-line.l1{ animation-delay:.25s; font-size:1.12rem; color:#fff; }
+.letter-line.l2{ animation-delay:.65s; }
+.letter-line.l3{ animation-delay:1.05s; }
+.letter-line.l4{ animation-delay:1.45s; }
+.letter-line em{ font-style:italic; color:var(--pink-soft); }
+
+.letter-line.signature{
+  margin-top:26px;
+  font-family:'Great Vibes', cursive;
+  font-size:2.15rem;
+  line-height:1.2;
+  color:#ffe1eb;
+  text-shadow:
+    0 0 12px rgba(255,92,138,.95),
+    0 0 38px rgba(255,92,138,.6);
+  animation:
+    lineUp .9s var(--ease) forwards 1.85s,
+    sigGlow 3.2s ease-in-out 2.9s infinite;
+}
+@keyframes sigGlow{
+  0%,100%{ text-shadow:0 0 12px rgba(255,92,138,.9), 0 0 38px rgba(255,92,138,.5); }
+  50%    { text-shadow:0 0 20px rgba(255,92,138,1), 0 0 62px rgba(255,92,138,.85); }
+}
+
+/* ============================================================
+   11. MUSIC BUTTON + PROGRESS DOTS
+   ============================================================ */
+.music-btn{
+  position:fixed;
+  top:calc(14px + env(safe-area-inset-top));
+  right:14px;
+  z-index:30;
+  width:46px; height:46px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(255,155,182,.35);
+  background:rgba(255,255,255,.07);
+  color:var(--blush);
+  font-size:1.05rem;
+  cursor:pointer;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:border-color .25s, box-shadow .25s, transform .18s;
+}
+.music-btn:active{ transform:scale(.92); }
+.music-btn.playing{
+  border-color:var(--pink);
+  box-shadow:0 0 18px rgba(255,92,138,.75);
+  animation:musicPulse 2.2s ease-in-out infinite;
+}
+@keyframes musicPulse{
+  0%,100%{ box-shadow:0 0 14px rgba(255,92,138,.55); }
+  50%    { box-shadow:0 0 26px rgba(255,92,138,.95); }
+}
+
+#dots{
+  position:fixed;
+  left:50%;
+  bottom:calc(20px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  z-index:20;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.dot{
+  width:7px; height:7px;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  transition:width .3s var(--ease), background .3s, box-shadow .3s;
+}
+.dot.active{
+  width:22px;
+  border-radius:99px;
+  background:var(--pink);
+  box-shadow:0 0 12px rgba(255,92,138,.95);
+}
+
+/* ============================================================
+   12. SMALL SCREENS / ACCESSIBILITY
+   ============================================================ */
+@media (max-width:360px){
+  .card{ padding:24px 17px 22px; }
+  .options.grid{ grid-template-columns:1fr; }
+  .options.grid .option{ min-height:0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .letter-line{ opacity:1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-glow" aria-hidden="true"></div>
+<div id="hearts" aria-hidden="true"></div>
+
+<button id="musicBtn" class="music-btn" aria-label="Toggle background music" title="Music">🎵</button>
+
+<main id="app">
+
+  <!-- ==================== SCREEN 1 ==================== -->
+  <section class="screen active" id="screen1">
+    <div class="card center">
+      <div class="glow-heart">❤️</div>
+      <h1 class="script-title">A Little Something<br>for Latifah</h1>
+      <p class="typing">
+        <span id="typedText"></span><span class="caret" id="caret"></span>
+      </p>
+      <button class="btn primary" id="startBtn">Open My Heart 💌</button>
+      <p class="hint">There are 5 little questions inside 💕</p>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN 2 ==================== -->
+  <section class="screen" id="screen2">
+    <div class="card">
+      <span class="eyebrow">Question 1 of 5</span>
+      <h2 class="q-title">Be honest with me…</h2>
+      <p class="q-sub">What would your life be like without me?</p>
+
+      <div class="options" id="withoutMeOptions">
+        <button class="option" data-value="empty">Empty 💔</button>
+        <button class="option" data-value="boring">Boring 😴</button>
+        <button class="option" data-value="cantimagine">I'd rather not imagine 🥺</button>
+      </div>
+
+      <div class="reply" id="withoutMeReply"></div>
+      <button class="btn primary hidden" id="toScreen3">Continue 💗</button>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN 3 ==================== -->
+  <section class="screen" id="screen3">
+    <div class="card">
+      <span class="eyebrow">Question 2 of 5</span>
+      <h2 class="q-title">So… I have a question 🌹</h2>
+      <p class="q-sub">Latifah, will you go on a date with me?</p>
+
+      <div class="options row" id="dateOptions">
+        <button class="option" data-value="yes">Yes 💖</button>
+        <button class="option" data-value="no">No</button>
+        <button class="option" data-value="idk">I don't know 🤔</button>
+      </div>
+
+      <div class="reply" id="dateReply"></div>
+      <button class="btn primary hidden" id="toScreen4">Continue 💫</button>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN 4 ==================== -->
+  <section class="screen" id="screen4">
+    <div class="card">
+      <span class="eyebrow">Question 3 of 5</span>
+      <h2 class="q-title">Pick our date 💌</h2>
+      <p class="q-sub">Low cost, high happiness. Choose one.</p>
+
+      <div class="options grid" id="ideaOptions">
+        <button class="option" data-value="Sunset walk &amp; street food 🌇">Sunset walk &amp; street food 🌇</button>
+        <button class="option" data-value="Cozy café &amp; long talks ☕">Cozy café &amp; long talks ☕</button>
+        <button class="option" data-value="Movie night at home 🍿">Movie night at home 🍿</button>
+        <button class="option" data-value="Picnic with snacks 🧺">Picnic with snacks 🧺</button>
+        <button class="option" data-value="Stargazing on the roof ✨">Stargazing on the roof ✨</button>
+        <button class="option" data-value="Beach &amp; ice cream 🍦">Beach &amp; ice cream 🍦</button>
+      </div>
+
+      <button class="btn primary" id="toScreen5" disabled>Continue 💫</button>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN 5 ==================== -->
+  <section class="screen" id="screen5">
+    <div class="card">
+      <span class="eyebrow">Question 4 of 5</span>
+      <h2 class="q-title">Describe your perfect date ✍️</h2>
+      <p class="q-sub">Anything at all — I want to make it real.</p>
+
+      <textarea id="perfectDate" rows="4" maxlength="300"
+        placeholder="Where would we go? What would we do?"></textarea>
+      <p class="counter"><span id="charCount">0</span>/300</p>
+
+      <div class="reply error" id="dateError">
+        Write a little something, or tap <strong>Skip</strong> 💕
+      </div>
+
+      <div class="btn-row">
+        <button class="btn ghost" id="skipPerfect">Skip 💗</button>
+        <button class="btn primary" id="toScreen6">Continue 💌</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN 6 ==================== -->
+  <section class="screen" id="screen6">
+    <div class="card">
+      <span class="eyebrow">Question 5 of 5</span>
+      <h2 class="q-title">What should I call you? 💕</h2>
+      <p class="q-sub">Pick one, or write your own.</p>
+
+      <div class="chips" id="nickChips">
+        <button class="chip" data-value="Habibti 💗">Habibti 💗</button>
+        <button class="chip" data-value="My Love ❤️">My Love ❤️</button>
+        <button class="chip" data-value="Sweetheart 🍫">Sweetheart 🍫</button>
+        <button class="chip" data-value="Queen 👑">Queen 👑</button>
+        <button class="chip" data-value="Cutie 🧸">Cutie 🧸</button>
+        <button class="chip" data-value="Baby 💞">Baby 💞</button>
+      </div>
+
+      <input type="text" id="customNick" maxlength="20" placeholder="Or type your own…">
+
+      <button class="btn primary" id="toFinale">Seal it with a kiss 💌</button>
+    </div>
+  </section>
+
+  <!-- ==================== SCREEN 7 — FINAL LETTER ==================== -->
+  <section class="screen" id="screen7">
+    <div class="card letter">
+      <div class="glow-heart small">❤️</div>
+
+      <p class="letter-line l1">To <span id="letterName">Latifah</span>,</p>
+      <p class="letter-line l2">Some feelings are too special to keep inside.</p>
+      <p class="letter-line l3" id="letterRecap"></p>
+      <p class="letter-line l4">
+        Thank you for being exactly who you are. Whatever today looks like,
+        you made mine better just by reading this.
+      </p>
+      <p class="letter-line signature">I remain 6ryann ❤️</p>
+
+      <button class="btn ghost" id="restartBtn">Read it again 🔁</button>
+    </div>
+  </section>
+
+</main>
+
+<div id="dots" aria-hidden="true"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ==========================================================
+     HELPERS
+     ========================================================== */
+  var $  = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) {
+    return Array.prototype.slice.call((root || document).querySelectorAll(sel));
+  };
+  var esc = function (str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  };
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var screens = $$('.screen');
+  var current = 1;
+
+  /* ==========================================================
+     STATE — keeps all her answers between pages
+     ========================================================== */
+  var state = {
+    withoutMe:   '',
+    dateAnswer:  '',
+    dateIdea:    '',
+    perfectDate: '',
+    nickname:    ''
+  };
+
+  /* ==========================================================
+     NAVIGATION
+     ========================================================== */
+  var dotsWrap = $('#dots');
+
+  screens.forEach(function () {
+    var d = document.createElement('span');
+    d.className = 'dot';
+    dotsWrap.appendChild(d);
+  });
+
+  function updateDots() {
+    $$('.dot', dotsWrap).forEach(function (d, i) {
+      d.classList.toggle('active', i === current - 1);
+    });
+  }
+
+  function goTo(n) {
+    var el = document.getElementById('screen' + n);
+    if (!el) return;
+
+    screens.forEach(function (s) { s.classList.remove('active'); });
+    el.classList.add('active');
+    current = n;
+    updateDots();
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (n === 1) runTyping();
+    if (n === 7) { buildLetter(); burstHearts(18); }
+  }
+
+  /* ==========================================================
+     SCREEN 1 — TYPEWRITER
+     ========================================================== */
+  var introText = 'Some feelings are too special to keep inside… ❤️';
+  var typingTimer = null;
+
+  function runTyping() {
+    var target = $('#typedText');
+    var caret  = $('#caret');
+    if (!target) return;
+
+    clearTimeout(typingTimer);
+    target.textContent = '';
+    caret.classList.remove('hide');
+
+    var i = 0;
+    function step() {
+      target.textContent = introText.slice(0, i);
+      i++;
+      if (i > introText.length) {
+        caret.classList.add('hide');
+        return;
+      }
+      typingTimer = setTimeout(step, 38 + Math.random() * 42);
+    }
+    step();
+  }
+
+  /* ==========================================================
+     SHARED UI HELPERS
+     ========================================================== */
+  function selectOne(groupEl, chosen) {
+    $$('.option, .chip', groupEl).forEach(function (o) {
+      var isChosen = (o === chosen);
+      o.classList.toggle('selected', isChosen);
+      if (o.classList.contains('option')) {
+        o.classList.toggle('faded', !isChosen);
+      }
+    });
+  }
+
+  function showReply(el, html) {
+    if (!el) return;
+    el.innerHTML = html;
+    el.classList.remove('show');
+    void el.offsetWidth;
+    el.classList.add('show');
+  }
+
+  function reveal(el) {
+    if (!el) return;
+    el.classList.remove('hidden');
+    el.classList.remove('pop-in');
+    void el.offsetWidth;
+    el.classList.add('pop-in');
+  }
+
+  /* ==========================================================
+     SCREEN 1 → 2
+     ========================================================== */
+  $('#startBtn').addEventListener('click', function () {
+    if (!musicStarted) { startMusic(); musicStarted = true; }
+    goTo(2);
+  });
+
+  /* ==========================================================
+     SCREEN 2 — LIFE WITHOUT ME
+     ========================================================== */
+  var replies2 = {
+    empty:        "Then it's settled — I'm staying right here. 🥰",
+    boring:       'Good. Then let me keep making it interesting. 😌❤️',
+    cantimagine:  "Neither can I. So let's never find out. 🥺💕"
+  };
+
+  $('#withoutMeOptions').addEventListener('click', function (e) {
+    var btn = e.target.closest('.option');
+    if (!btn) return;
+
+    selectOne(this, btn);
+    state.withoutMe = btn.dataset.value;
+    showReply($('#withoutMeReply'), replies2[btn.dataset.value] || '');
+    reveal($('#toScreen3'));
+  });
+
+  $('#toScreen3').addEventListener('click', function () { goTo(3); });
+
+  /* ==========================================================
+     SCREEN 3 — DATE INVITATION
+     ========================================================== */
+  var replies3 = {
+    yes: 'You just made my whole week. 🥹💖 Now let\u2019s plan something beautiful.',
+    no:  "That's okay — truly, no pressure at all. 💗 You're still my favourite person, and this little gift was always for you.",
+    idk: "That's more than fair. Take your time. 💗 Whatever you choose, I'm not going anywhere."
+  };
+
+  $('#dateOptions').addEventListener('click', function (e) {
+    var btn = e.target.closest('.option');
+    if (!btn) return;
+
+    selectOne(this, btn);
+    var v = btn.dataset.value;
+    state.dateAnswer = v;
+
+    showReply($('#dateReply'), replies3[v] || '');
+
+    var next = $('#toScreen4');
+    next.textContent = (v === 'yes') ? "Let's plan it 💫" : 'Continue anyway →';
+    reveal(next);
+
+    if (v === 'yes') burstHearts(28);
+  });
+
+  $('#toScreen4').addEventListener('click', function () { goTo(4); });
+
+  /* ==========================================================
+     SCREEN 4 — CHOOSE A DATE IDEA
+     ========================================================== */
+  $('#ideaOptions').addEventListener('click', function (e) {
+    var btn = e.target.closest('.option');
+    if (!btn) return;
+
+    selectOne(this, btn);
+    state.dateIdea = btn.dataset.value;
+    $('#toScreen5').disabled = false;
+  });
+
+  $('#toScreen5').addEventListener('click', function () { goTo(5); });
+
+  /* ==========================================================
+     SCREEN 5 — PERFECT DATE
+     ========================================================== */
+  var pd = $('#perfectDate');
+
+  pd.addEventListener('input', function () {
+    $('#charCount').textContent = pd.value.length;
+    $('#dateError').classList.remove('show');
+  });
+
+  $('#skipPerfect').addEventListener('click', function () {
+    state.perfectDate = '';
+    goTo(6);
+  });
+
+  $('#toScreen6').addEventListener('click', function () {
+    var val = pd.value.trim();
+
+    if (!val) {
+      var err = $('#dateError');
+      err.classList.remove('show');
+      void err.offsetWidth;
+      err.classList.add('show');
+      pd.focus();
+      return;
+    }
+
+    state.perfectDate = val;
+    goTo(6);
+  });
+
+  /* ==========================================================
+     SCREEN 6 — NICKNAME
+     ========================================================== */
+  var chipWrap = $('#nickChips');
+  var customNick = $('#customNick');
+
+  chipWrap.addEventListener('click', function (e) {
+    var chip = e.target.closest('.chip');
+    if (!chip) return;
+    $$('.chip', chipWrap).forEach(function (c) {
+      c.classList.toggle('selected', c === chip);
+    });
+    customNick.value = '';
+  });
+
+  customNick.addEventListener('input', function () {
+    if (customNick.value.trim()) {
+      $$('.chip', chipWrap).forEach(function (c) { c.classList.remove('selected'); });
+    }
+  });
+
+  $('#toFinale').addEventListener('click', function () {
+    var custom = customNick.value.trim();
+    var chosen = $('#nickChips .chip.selected');
+    state.nickname = custom || (chosen ? chosen.dataset.value : '');
+    goTo(7);
+  });
+
+  /* ==========================================================
+     SCREEN 7 — BUILD THE LOVE LETTER
+     ========================================================== */
+  function buildLetter() {
+    var name = state.nickname || 'Latifah';
+    $('#letterName').textContent = name;
+
+    var withoutMap = {
+      empty:       'empty 💔',
+      boring:      'boring 😴',
+      cantimagine: 'too hard to imagine 🥺'
+    };
+
+    var bits = [];
+    if (state.withoutMe) {
+      bits.push('that life without me would be <em>' + withoutMap[state.withoutMe] + '</em>');
+    }
+    if (state.dateIdea) {
+      bits.push('that our date should be <em>' + esc(state.dateIdea) + '</em>');
+    }
+    if (state.perfectDate) {
+      bits.push('that your perfect date is “<em>' + esc(state.perfectDate) + '</em>”');
+    }
+    if (state.nickname) {
+      bits.push('that I should call you <em>' + esc(state.nickname) + '</em>');
+    }
+
+    var recap = bits.length
+      ? 'You told me ' + bits.join(', ') + '. I kept every single word. 💌'
+      : 'I kept every word you gave me. 💌';
+
+    $('#letterRecap').innerHTML = recap;
+  }
+
+  $('#restartBtn').addEventListener('click', function () {
+    Object.keys(state).forEach(function (k) { state[k] = ''; });
+
+    $$('.option').forEach(function (o) { o.classList.remove('selected', 'faded'); });
+    $$('.chip').forEach(function (c) { c.classList.remove('selected'); });
+
+    customNick.value = '';
+    pd.value = '';
+    $('#charCount').textContent = '0';
+
+    $('#withoutMeReply').classList.remove('show');
+    $('#dateReply').classList.remove('show');
+    $('#dateError').classList.remove('show');
+
+    $('#toScreen3').classList.add('hidden');
+    $('#toScreen4').classList.add('hidden');
+    $('#toScreen5').disabled = true;
+
+    goTo(1);
+  });
+
+  /* ==========================================================
+     FLOATING HEARTS
+     ========================================================== */
+  var heartsLayer = $('#hearts');
+  var HEART_GLYPHS = ['❤️', '💗', '💕', '💖', '🌸'];
+
+  function spawnHeart() {
+    var h = document.createElement('div');
+    var size = 10 + Math.random() * 18;
+
+    h.className = 'heart-float';
+    h.textContent = HEART_GLYPHS[Math.floor(Math.random() * HEART_GLYPHS.length)];
+    h.style.left = (Math.random() * 100) + 'vw';
+    h.style.fontSize = size + 'px';
+    h.style.animationDuration = (9 + Math.random() * 9) + 's';
+    h.style.animationDelay = (Math.random() * 2) + 's';
+    h.style.filter = 'drop-shadow(0 0 ' + (size / 2.2) + 'px rgba(255,92,138,.85))';
+
+    heartsLayer.appendChild(h);
+    h.addEventListener('animationend', function () { h.remove(); });
+  }
+
+  function burstHearts(count) {
+    if (reduceMotion) return;
+    for (var i = 0; i < count; i++) {
+      (function (i) {
+        var h = document.createElement('div');
+        var angle = Math.random() * Math.PI * 2;
+        var dist  = 90 + Math.random() * 190;
+
+        h.className = 'pop-heart';
+        h.textContent = Math.random() > 0.4 ? '❤️' : '💗';
+        h.style.setProperty('--tx', (Math.cos(angle) * dist) + 'px');
+        h.style.setProperty('--ty', (Math.sin(angle) * dist) + 'px');
+        h.style.fontSize = (13 + Math.random() * 17) + 'px';
+        h.style.animationDelay = (Math.random() * 0.22) + 's';
+
+        heartsLayer.appendChild(h);
+        setTimeout(function () { h.remove(); }, 1700);
+      })(i);
+    }
+  }
+
+  if (!reduceMotion) {
+    for (var k = 0; k < 6; k++) setTimeout(spawnHeart, k * 350);
+
+    setInterval(function () {
+      if (document.hidden) return;
+      if (heartsLayer.querySelectorAll('.heart-float').length < 26) spawnHeart();
+    }, 950);
+  }
+
+  /* ==========================================================
+     BACKGROUND MUSIC (generated in-browser — no audio file)
+     ========================================================== */
+  var actx = null;
+  var master = null;
+  var musicPlaying = false;
+  var musicStarted = false;
+  var loopTimer = null;
+  var nextLoopTime = 0;
+
+  var CHORDS = [
+    [174.61, 220.00, 261.63],
+    [261.63, 329.63, 392.00],
+    [196.00, 246.94, 293.66],
+    [220.00, 261.63, 329.63]
+  ];
+  var CHORD_DURATION = 2.4;
+
+  function initAudio() {
+    if (actx) return;
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+
+    actx = new AC();
+
+    var filter = actx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 2400;
+
+    master = actx.createGain();
+    master.gain.value = 0.0001;
+
+    master.connect(filter);
+    filter.connect(actx.destination);
+  }
+
+  function playNote(freq, when, dur, vol) {
+    var osc  = actx.createOscillator();
+    var gain = actx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, when);
+
+    gain.gain.setValueAtTime(0.0001, when);
+    gain.gain.exponentialRampToValueAtTime(vol, when + 0.55);
+    gain.gain.exponentialRampToValueAtTime(0.0001, when + dur);
+
+    osc.connect(gain);
+    gain.connect(master);
+    osc.start(when);
+    osc.stop(when + dur + 0.1);
+  }
+
+  function scheduleLoop() {
+    if (!musicPlaying || !actx) return;
+
+    var now = actx.currentTime;
+    if (nextLoopTime < now + 0.15) nextLoopTime = now + 0.15;
+
+    CHORDS.forEach(function (chord, ci) {
+      var t0 = nextLoopTime + ci * CHORD_DURATION;
+
+      playNote(chord[0] / 2, t0, CHORD_DURATION * 1.3, 0.10);
+      chord.forEach(function (f, i) {
+        playNote(f, t0 + i * 0.62, 1.9, 0.055);
+      });
+      playNote(chord[2] * 2, t0 + 1.55, 1.2, 0.028);
+    });
+
+    nextLoopTime += CHORDS.length * CHORD_DURATION;
+    loopTimer = setTimeout(scheduleLoop, CHORDS.length * CHORD_DURATION * 1000 - 400);
+  }
+
+  function startMusic() {
+    initAudio();
+    if (!actx) return;
+
+    if (actx.state === 'suspended') actx.resume();
+
+    musicPlaying = true;
+
+    var t = actx.currentTime;
+    master.gain.cancelScheduledValues(t);
+    master.gain.setValueAtTime(Math.max(master.gain.value, 0.0001), t);
+    master.gain.linearRampToValueAtTime(0.85, t + 2.2);
+
+    nextLoopTime = t + 0.15;
+    scheduleLoop();
+    updateMusicBtn();
+  }
+
+  function stopMusic() {
+    musicPlaying = false;
+    clearTimeout(loopTimer);
+
+    if (actx) {
+      var t = actx.currentTime;
+      master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(Math.max(master.gain.value, 0.0001), t);
+      master.gain.linearRampToValueAtTime(0.0001, t + 0.7);
+    }
+    updateMusicBtn();
+  }
+
+  var musicBtn = $('#musicBtn');
+
+  function updateMusicBtn() {
+    musicBtn.classList.toggle('playing', musicPlaying);
+    musicBtn.textContent = musicPlaying ? '🎵' : '🔇';
+    musicBtn.setAttribute('aria-label',
+      musicPlaying ? 'Pause background music' : 'Play background music');
+  }
+
+  musicBtn.addEventListener('click', function () {
+    if (musicPlaying) {
+      stopMusic();
+    } else {
+      startMusic();
+      musicStarted = true;
+    }
+  });
+
+  /* ==========================================================
+     BOOT
+     ========================================================== */
+  updateDots();
+  runTyping();
+
+})();
+</script>
+
+</body>
+</html>
